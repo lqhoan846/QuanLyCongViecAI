@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>QUẢN LÝ CÔNG VIỆC BẰNG AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- ========== LANDING PAGE ========== -->
+    <div id="landing-page" class="page">
+        <div class="landing-container">
+            <div class="landing-header">
+                <div class="logo-animation">
+                    <i class="fas fa-calendar-check logo-icon"></i>
+                    <div class="logo-particles"></div>
+                </div>
+                <h1 class="main-title">QUẢN LÝ CÔNG VIỆC BẰNG AI</h1>
+                <p class="subtitle">Tạo không gian làm việc riêng tư của bạn - Thông minh, Đơn giản, Hiệu quả</p>
+            </div>
+            
+            <div class="landing-features">
+                <div class="feature-card">
+                    <i class="fas fa-brain"></i>
+                    <h3>AI Thông Minh</h3>
+                    <p>Tự động phân tích và sắp xếp công việc</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-lock"></i>
+                    <h3>Riêng Tư Tuyệt Đối</h3>
+                    <p>Link độc quyền chỉ bạn sở hữu</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-infinity"></i>
+                    <h3>Lưu Trữ Vĩnh Viễn</h3>
+                    <p>Dữ liệu không bao giờ mất</p>
+                </div>
+            </div>
+
+            <div class="create-link-section">
+                <button id="create-link-btn" class="primary-btn pulse-animation">
+                    <i class="fas fa-magic"></i>
+                    <span>TẠO KHÔNG GIAN RIÊNG</span>
+                </button>
+                
+                <div class="link-output-container">
+                    <div class="link-box">
+                        <input type="text" id="generated-link" readonly placeholder="Link của bạn sẽ xuất hiện ở đây...">
+                        <button id="copy-link-btn" class="copy-btn" title="Sao chép link">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                    <p class="link-hint">
+                        <i class="fas fa-info-circle"></i>
+                        Sao chép link và dán vào trình duyệt để sử dụng
+                    </p>
+                </div>
+            </div>
+
+            <div class="landing-decoration">
+                <div class="floating-shape shape-1"></div>
+                <div class="floating-shape shape-2"></div>
+                <div class="floating-shape shape-3"></div>
+                <div class="floating-shape shape-4"></div>
+            </div>
+        </div>
+        
+        <footer class="landing-footer">
+            <p>© 2024 - Được tạo bởi: <strong>LamQuocHoan</strong></p>
+        </footer>
+    </div>
+
+    <!-- ========== WELCOME MODAL ========== -->
+    <div id="welcome-modal" class="modal hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content welcome-content">
+            <div class="welcome-animation">
+                <i class="fas fa-robot"></i>
+                <div class="welcome-sparkles"></div>
+            </div>
+            <h2>Xin chào bạn! 👋</h2>
+            <p class="welcome-text">
+                Mình là hệ thống quản lý công việc thông minh được tạo bởi <strong>LamQuocHoan</strong>.<br>
+                Cậu tên gì thế? 🌟
+            </p>
+            <div class="name-input-container">
+                <input type="text" id="user-name-input" placeholder="Nhập tên của bạn..." maxlength="30">
+                <div class="input-decoration"></div>
+            </div>
+            <button id="start-btn" class="primary-btn">
+                <i class="fas fa-rocket"></i>
+                <span>BẮT ĐẦU</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- ========== DASHBOARD PAGE ========== -->
+    <div id="dashboard-page" class="page hidden">
+        <!-- Help Button -->
+        <button id="help-btn" class="help-btn" title="Hướng dẫn sử dụng">
+            <i class="fas fa-question"></i>
+        </button>
+
+        <!-- AI Chat Bubble -->
+        <div id="ai-chat-bubble" class="ai-chat-bubble">
+            <div class="chat-avatar">
+                <i class="fas fa-robot"></i>
+            </div>
+            <div class="chat-message">
+                <p id="ai-message">Chào cậu! Tui sẵn sàng giúp cậu quản lý công việc nè! 🎉</p>
+            </div>
+        </div>
+
+        <!-- Main Input Section -->
+        <div class="input-section">
+            <div class="input-wrapper">
+                <input type="text" id="task-input" placeholder="Hãy nhập công việc và thời gian cụ thể">
+                <button id="add-task-btn" class="add-btn">
+                    <i class="fas fa-plus"></i>
+                    <span>THÊM CÔNG VIỆC</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Calendar Container -->
+        <div class="calendar-container">
+            <!-- This Week Section -->
+            <div class="week-section this-week-section">
+                <h2 class="section-title">
+                    <i class="fas fa-calendar-week"></i>
+                    TUẦN NÀY
+                </h2>
+                <div id="this-week-calendar" class="calendar-grid">
+                    <!-- Generated by JS -->
+                </div>
+            </div>
+
+            <!-- Next Week Section -->
+            <div class="week-section next-week-section">
+                <h2 class="section-title">
+                    <i class="fas fa-calendar-alt"></i>
+                    TUẦN SAU
+                </h2>
+                <div id="next-week-calendar" class="calendar-grid mini">
+                    <!-- Generated by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Actions -->
+        <div class="bottom-actions">
+            <button id="history-btn" class="action-btn history-btn">
+                <i class="fas fa-book"></i>
+                <span>LỊCH SỬ</span>
+            </button>
+            <button id="future-btn" class="action-btn future-btn">
+                <i class="fas fa-seedling"></i>
+                <span>TƯƠNG LAI</span>
+            </button>
+        </div>
+
+        <!-- Current DateTime Display -->
+        <div id="current-datetime" class="datetime-display">
+            <i class="fas fa-clock"></i>
+            <span id="datetime-text"></span>
+        </div>
+
+        <!-- Footer Credit -->
+        <div class="dashboard-footer">
+            Được tạo bởi: LamQuocHoan
+        </div>
+    </div>
+
+    <!-- ========== HELP MODAL ========== -->
+    <div id="help-modal" class="modal hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content help-content">
+            <button class="modal-close-btn" data-close="help-modal">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="help-header">
+                <i class="fas fa-lightbulb"></i>
+                <h2>Hướng Dẫn Sử Dụng</h2>
+            </div>
+            <div class="help-body">
+                <div class="help-item">
+                    <i class="fas fa-edit"></i>
+                    <p>Hãy nhập công việc + thời gian cụ thể rồi nhấn <strong>[THÊM CÔNG VIỆC]</strong> để tự động được thêm vào lịch nhé!</p>
+                </div>
+                <div class="help-item">
+                    <i class="fas fa-book"></i>
+                    <p>Ở phần <strong>"LỊCH SỬ"</strong>, bạn có thể xem lại công việc của 4 tuần gần nhất</p>
+                </div>
+                <div class="help-item">
+                    <i class="fas fa-seedling"></i>
+                    <p>Ở phần <strong>"TƯƠNG LAI"</strong>, bạn có thể xem công việc của 4 tuần sắp tới</p>
+                </div>
+                <div class="help-item">
+                    <i class="fas fa-trash-alt"></i>
+                    <p>Những công việc đã trôi qua quá <strong>4 tuần</strong> sẽ bị xóa mất đó nha</p>
+                </div>
+                <div class="help-signature">
+                    <p>Tôi là <strong>Lâm Quốc Hoàn</strong>, hi vọng sẽ giúp được bạn phần nào đó hehehehe 😄</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== HISTORY MODAL ========== -->
+    <div id="history-modal" class="modal hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content history-content">
+            <button class="modal-close-btn" data-close="history-modal">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="history-header">
+                <i class="fas fa-book"></i>
+                <h2>LỊCH SỬ</h2>
+            </div>
+            <div id="history-weeks-container" class="weeks-container">
+                <!-- Generated by JS -->
+            </div>
+            <div id="history-detail-view" class="detail-view hidden">
+                <button class="back-btn" data-back="history-weeks">
+                    <i class="fas fa-arrow-left"></i>
+                    Trở lại
+                </button>
+                <div id="history-detail-content" class="detail-content">
+                    <!-- Generated by JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== FUTURE MODAL ========== -->
+    <div id="future-modal" class="modal hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content future-content">
+            <button class="modal-close-btn" data-close="future-modal">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="future-header">
+                <i class="fas fa-seedling"></i>
+                <h2>TƯƠNG LAI</h2>
+            </div>
+            <div id="future-weeks-container" class="weeks-container">
+                <!-- Generated by JS -->
+            </div>
+            <div id="future-detail-view" class="detail-view hidden">
+                <button class="back-btn" data-back="future-weeks">
+                    <i class="fas fa-arrow-left"></i>
+                    Trở lại
+                </button>
+                <div id="future-detail-content" class="detail-content">
+                    <!-- Generated by JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== CONFLICT MODAL ========== -->
+    <div id="conflict-modal" class="modal hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content conflict-content">
+            <div class="conflict-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <h2>Ê, định phân thân chi thuật à? 🤯</h2>
+            <p class="conflict-text">Trùng lịch rồi nè!</p>
+            <div id="conflict-details" class="conflict-details">
+                <!-- Generated by JS -->
+            </div>
+            <div class="conflict-actions">
+                <button id="replace-task-btn" class="conflict-btn replace">
+                    <i class="fas fa-exchange-alt"></i>
+                    Thay thế công việc cũ
+                </button>
+                <button id="edit-task-btn" class="conflict-btn edit">
+                    <i class="fas fa-edit"></i>
+                    Chỉnh sửa lại
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== CONTEXT MENU ========== -->
+    <div id="context-menu" class="context-menu hidden">
+        <button class="context-item edit-item">
+            <i class="fas fa-edit"></i>
+            <span>Chỉnh sửa công việc</span>
+        </button>
+        <button class="context-item delete-item">
+            <i class="fas fa-trash-alt"></i>
+            <span>Tôi xóa công việc này nhé?</span>
+        </button>
+    </div>
+
+    <!-- ========== EDIT TASK MODAL ========== -->
+    <div id="edit-modal" class="modal hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content edit-content">
+            <button class="modal-close-btn" data-close="edit-modal">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2><i class="fas fa-edit"></i> Chỉnh Sửa Công Việc</h2>
+            <div class="edit-form">
+                <div class="form-group">
+                    <label>Tên công việc:</label>
+                    <input type="text" id="edit-task-name" placeholder="Nhập tên công việc">
+                </div>
+                <div class="form-group">
+                    <label>Ngày:</label>
+                    <input type="date" id="edit-task-date">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Giờ bắt đầu:</label>
+                        <input type="time" id="edit-task-start">
+                    </div>
+                    <div class="form-group">
+                        <label>Giờ kết thúc:</label>
+                        <input type="time" id="edit-task-end">
+                    </div>
+                </div>
+                <button id="save-edit-btn" class="primary-btn">
+                    <i class="fas fa-save"></i>
+                    Lưu thay đổi
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== UNDO TOAST ========== -->
+    <div id="undo-toast" class="undo-toast hidden">
+        <span>Đã xóa công việc</span>
+        <button id="undo-btn">
+            <i class="fas fa-undo"></i>
+            HOÀN TÁC
+        </button>
+        <div class="undo-progress"></div>
+    </div>
+
+    <!-- ========== REMINDER TOAST ========== -->
+    <div id="reminder-toast" class="reminder-toast hidden">
+        <div class="reminder-content">
+            <i class="fas fa-bell"></i>
+            <p id="reminder-text"></p>
+        </div>
+        <button class="reminder-close">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <!-- ========== NOTIFICATION TOAST ========== -->
+    <div id="notification-toast" class="notification-toast hidden">
+        <i class="toast-icon"></i>
+        <span id="notification-text"></span>
+    </div>
+
+    <!-- ========== FIREWORKS CANVAS ========== -->
+    <canvas id="fireworks-canvas"></canvas>
+
+    <!-- ========== ICON EFFECTS CONTAINER ========== -->
+    <div id="icon-effects-container"></div>
+
+    <!-- ========== LOADING OVERLAY ========== -->
+    <div id="loading-overlay" class="loading-overlay hidden">
+        <div class="loading-spinner">
+            <div class="spinner-ring"></div>
+            <i class="fas fa-robot"></i>
+        </div>
+        <p>AI đang xử lý...</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
